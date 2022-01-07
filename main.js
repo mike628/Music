@@ -1,11 +1,21 @@
 function makeDemo1() {
     //<1>
+    
     makeMeasure();
     //Measure.insertNote()                   //<3> <4>
 };
 
 // Data consists of [ Measure,Position,String, Fret ]
+ //String Names hidden clickable
+ const array1 = ['e', 'B', 'G', 'D', 'A', 'E'];
+ // String Names 
+ const array2 = ['e1', 'B1', 'G1', 'D1', 'A1', 'E1'];
 
+ let staffY = 20;
+ let stringLineIndex = 0;
+ let selectedString = "";
+ let initialPosition = [20, 20]
+ let currentPosition = [];
 
 let data = [];
 data.push("1", "1", "G", "6")
@@ -25,16 +35,7 @@ function insertNote(id) {
 }
 function makeMeasure() {
 
-    //String Names hidden clickable
-    const array1 = ['e', 'B', 'G', 'D', 'A', 'E'];
-    // String Names 
-    const array2 = ['e1', 'B1', 'G1', 'D1', 'A1', 'E1'];
-
-    let staffY = 20;
-    let stringLineIndex = 0;
-    let selectedString = "";
-    let initialPosition = [20, 20]
-    let currentPosition = [];
+   
 
     for (const element of array1) {
 
@@ -91,11 +92,25 @@ function makeMeasure() {
         .attr("x2", 0)
         .attr("y2", 50);
 
-
+fretboard();
 }
 
-function make fretboard()
+function fretboard()
 {
     // twelfth root of two 
-    let fretSpacing = Math.pow(n, 12/2);
+    let fretSpacing = Math.pow(2, 12);
+    for (const element of array1) {
+    d3.select("#fretboard")
+    .append("line")
+    .style("stroke", "black")
+    .style("stroke-width", 1)
+    .attr("id", array2[stringLineIndex])
+    .attr("x1", staffY)
+    .attr("y1", 30)
+    .attr("x2", staffY)
+    .attr("y2", "90%");
+    staffY = staffY + 15;
+        stringLineIndex++;
+    }
+    
 }

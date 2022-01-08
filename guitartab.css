@@ -1,3 +1,9 @@
 svg{
     border: 1px solid black;
 }
+.svg-content {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

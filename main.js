@@ -102,6 +102,8 @@ function fretboard() {
     console.log(fretSpacing);
     for (const element of array1) {
         d3.select("#fretboard")
+        .attr("viewBox", "0 0 300 300")
+        .classed("svg-content", true)
             .append("line")
             .style("stroke", "black")
             .style("stroke-width", 1)
@@ -130,4 +132,41 @@ function fretboard() {
         nextfret = nextfret + spacing;
         console.log(nextfret);
     }
+    d3.select("#fretboard")
+    .append('circle')
+    .attr('cx', 148)
+    .attr('cy', 135)
+    .attr('r', 6)
+    .style('fill', 'black');
+    d3.select("#fretboard")
+    .append('circle')
+    .attr('cx', 148)
+    .attr('cy', 199)
+    .attr('r', 6)
+    .style('fill', 'black');
+    d3.select("#fretboard")
+    .append('circle')
+    .attr('cx', 148)
+    .attr('cy', 249)
+    .attr('r', 6)
+    .style('fill', 'black');
+    d3.select("#fretboard")
+    .append('circle')
+    .attr('cx', 148)
+    .attr('cy', 288)
+    .attr('r', 6)
+    .style('fill', 'black');
+    d3.select("#fretboard")
+    .append('circle')
+    .attr('cx', 133)
+    .attr('cy', 334)
+    .attr('r', 6)
+    .style('fill', 'black');
+    d3.select("#fretboard")
+    .append('circle')
+    .attr('cx', 163)
+    .attr('cy', 334)
+    .attr('r', 6)
+    .style('fill', 'black');
+    
 }

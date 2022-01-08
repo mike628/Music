@@ -1,53 +1,58 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
   <meta charset="utf-8">
-  <script src="d3.js"></script>
-  <script src="Note.js"></script>                                    <!--1-->
-  <script src="main.js"></script>  
+  <script type="text/javascript" src="d3.js"></script>
+  <script type="text/javascript" src="Note.js"></script>
+  <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="fretboard.js"></script>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-   <link href="guitartab.css" rel="stylesheet"               <!--2-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  <link href="guitartab.css" rel="stylesheet" />
 </head>
- <!-- TODO Need to change this -->
-<body onload="makeDemo1()"> 
-  <div>                                     <!--3-->
-  <svg id="demo1" width="100%" height="600"
-       style="background: white" /> 
-  <svg id="fretboard" width="100%" height="600"
-       style="background: rgb(155, 126, 126)" /> 
-      </div>
-       <div class="btn-group" role="group">
-       <button id="A1" type="button" class="btn btn-primary">Open</button>
-       <button id="A2"type="button" class="btn btn-primary">Fret 1</button>
-       <button id="A3"type="button" class="btn btn-primary">Fret 2</button>
-       <button id="A4"type="button" class="btn btn-primary">Fret 3</button>
-       <button id="A5"type="button" class="btn btn-primary">Fret 4</button>
-       <button id="A6"type="button" class="btn btn-primary">Fret 5</button>
-       <button id="A7"type="button" class="btn btn-primary">Fret 6</button>
-       <button id="A8"type="button" class="btn btn-primary">Fret 7</button>
-       <button id="A9"type="button" class="btn btn-primary">Fret 8</button>
-       <button id="A10"type="button" class="btn btn-primary">Fret 9</button>
-       <button id="A11"type="button" class="btn btn-primary">Fret 10</button>
-       <button id="A12"type="button" class="btn btn-primary">Fret 11</button>
-      </div>
-    <br/>
-      <div class="btn-group" role="group">
-        <button type="button" class="btn btn-primary">Fret 12</button>
-        <button type="button" class="btn btn-primary">Fret 13</button>
-        <button type="button" class="btn btn-primary">Fret 14</button>
-        <button type="button" class="btn btn-primary">Fret 15</button>
-        <button type="button" class="btn btn-primary">Fret 16</button>
-        <button type="button" class="btn btn-primary">Fret 17</button>
-        <button type="button" class="btn btn-primary">Fret 18</button>
-        <button type="button" class="btn btn-primary">Fret 19</button>
-        <button type="button" class="btn btn-primary">Fret 20</button>
-        <button type="button" class="btn btn-primary">Fret 21</button>
-        <button type="button" class="btn btn-primary">Fret 22</button>
-        <button type="button" class="btn btn-primary">Fret 23</button>
-       </div>
+<!-- TODO Need to change this -->
+
+<body onload="makeDemo1()">
+  <div>
+    <svg id="demo1" width="200" height="600" style="background:white">
+    </svg>
+    <svg id="fretboard" width="200" height="600" style="background: white">
+    </svg>
+  </div>
+  <div class="btn-group" role="group">
+    <button id="A1" type="button" class="btn btn-primary">Open</button>
+    <button id="A2" type="button" class="btn btn-primary">Fret 1</button>
+    <button id="A3" type="button" class="btn btn-primary">Fret 2</button>
+    <button id="A4" type="button" class="btn btn-primary">Fret 3</button>
+    <button id="A5" type="button" class="btn btn-primary">Fret 4</button>
+    <button id="A6" type="button" class="btn btn-primary">Fret 5</button>
+    <button id="A7" type="button" class="btn btn-primary">Fret 6</button>
+    <button id="A8" type="button" class="btn btn-primary">Fret 7</button>
+    <button id="A9" type="button" class="btn btn-primary">Fret 8</button>
+    <button id="A10" type="button" class="btn btn-primary">Fret 9</button>
+    <button id="A11" type="button" class="btn btn-primary">Fret 10</button>
+    <button id="A12" type="button" class="btn btn-primary">Fret 11</button>
+  </div>
+  <br>
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-primary">Fret 12</button>
+    <button type="button" class="btn btn-primary">Fret 13</button>
+    <button type="button" class="btn btn-primary">Fret 14</button>
+    <button type="button" class="btn btn-primary">Fret 15</button>
+    <button type="button" class="btn btn-primary">Fret 16</button>
+    <button type="button" class="btn btn-primary">Fret 17</button>
+    <button type="button" class="btn btn-primary">Fret 18</button>
+    <button type="button" class="btn btn-primary">Fret 19</button>
+    <button type="button" class="btn btn-primary">Fret 20</button>
+    <button type="button" class="btn btn-primary">Fret 21</button>
+    <button type="button" class="btn btn-primary">Fret 22</button>
+    <button type="button" class="btn btn-primary">Fret 23</button>
+  </div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </html>

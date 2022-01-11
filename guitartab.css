@@ -7,3 +7,8 @@ svg{
     top: 0;
     left: 0;
 }
+#fretboardDiv {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

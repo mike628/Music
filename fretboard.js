@@ -2,37 +2,43 @@ function fretboard() {
     // twelfth root of two 
     //let fretSpacing = Math.pow(2, 2/12);
     let fretSpacing = 1.122;
-    d3.select("#fretboard")
+   /*  d3.select("#fretboard")
         .append('rect')
         .attr('x', 33)
-        .attr('y', 110)
-        .attr('width', 800)
-        .attr('height', 150)
+        .attr('y', 85)
+        .attr('width', 1200)
+        .attr('height', 195)
         .attr('stroke', 'black')
+        .attr('stroke-linecap', 'butt')
+        .attr('stroke-width', '3')
         .attr('fill', '#FFFAEF');
-    console.log(fretSpacing);
+    console.log(fretSpacing); */
 
-    //STRINGS
+    //STRINGS - Start at 30 and 30 between them.
+
     for (const element of array1) {
         d3.select("#fretboard")
             // 6
-           
+
             .append("line")
             .style("stroke", "black")
             .style("stroke-width", 1)
-            .attr("id", array2[stringLineIndex])
+            .attr("id", element)
             .attr("x1", 30)
             .attr("y1", staffY)
-            .attr("x2", 800)
+            .attr("x2", 1200)
             .attr("y2", staffY);
         staffY = staffY + 30;
         stringLineIndex++;
+        console.log(stringLineIndex);
+        console.log("String "+element+ " y position =" +staffY);
     }
-    
-    let spacing = 120;
-    let nextfret = 30 * fretSpacing;
+
+    let spacing = 150;
+    let nextfret = 30
+    console.log(nextfret);
     // FRETS
-    for (let step = 0; step < 16; step++) {
+    for (let step = 0; step < 18; step++) {
         d3.select("#fretboard")
             .append("line")
             .style("stroke", "black")
@@ -43,8 +49,8 @@ function fretboard() {
             .attr("x2", nextfret)
             .attr("y2", 260);
         spacing = spacing * (1 / 1.122);
-        console.log(spacing);
-        nextfret = nextfret + spacing;
+        //console.log(spacing);
+        nextfret = Math.round(nextfret + spacing);
         console.log(nextfret);
     }
     d3.select("#fretboard")

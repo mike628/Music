@@ -7,7 +7,7 @@ function makeDemo1() {
 
 // Data consists of [ Measure,Position,String, Fret ]
 //String Names hidden clickable
-const array1 = ['e', 'B', 'G', 'D', 'A', 'E'];
+const ArrayOfGuitarStringNames = ['e', 'B', 'G', 'D', 'A', 'E'];
 // String Names 
 const array2 = ['e1', 'B1', 'G1', 'D1', 'A1', 'E1'];
 
@@ -22,7 +22,7 @@ data.push("1", "1", "G", "6")
 function insertNote(id) {
     let elem = document.querySelector(id);
     let domRect = elem.getBoundingClientRect();
-    console.log(domRect);
+    //console.log(domRect);
     //d3.select("svg")
     /* .append("text")
     .attr("id", "text1")
@@ -37,7 +37,7 @@ function makeMeasure() {
 
 
 
-    for (const element of array1) {
+    for (const element of ArrayOfGuitarStringNames) {
 
         // Lines representing Strings
         d3.select("svg")
@@ -80,7 +80,7 @@ function makeMeasure() {
 
         staffY = staffY + 15;
         stringLineIndex++;
-        console.log(stringLineIndex);
+        //console.log(stringLineIndex);
     }
     // Measure Bar
     d3.select("svg")

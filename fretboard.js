@@ -1,93 +1,133 @@
+let fretWidthArray = [];
+let fretPositionsArray = [];
+let spacing = 150;
+const upperLeftCorner = 60;
+let fret = upperLeftCorner
+
 function fretboard() {
-    // twelfth root of two 
-    //let fretSpacing = Math.pow(2, 2/12);
-    let fretSpacing = 1.122;
-   /*  d3.select("#fretboard")
-        .append('rect')
-        .attr('x', 33)
-        .attr('y', 85)
-        .attr('width', 1200)
-        .attr('height', 195)
-        .attr('stroke', 'black')
-        .attr('stroke-linecap', 'butt')
-        .attr('stroke-width', '3')
-        .attr('fill', '#FFFAEF');
-    console.log(fretSpacing); */
+    
+    createPositionAndWidthOfFrets();
 
-    //STRINGS - Start at 30 and 30 between them.
-
-    for (const element of array1) {
+    //STRINGS - Start at 60 and 30 between them.
+    for (const strg of ArrayOfGuitarStringNames) {
         d3.select("#fretboard")
-            // 6
-
             .append("line")
             .style("stroke", "black")
             .style("stroke-width", 1)
-            .attr("id", element)
-            .attr("x1", 30)
+            .attr("id", strg)
+            .attr("x1", upperLeftCorner)
             .attr("y1", staffY)
             .attr("x2", 1200)
             .attr("y2", staffY);
         staffY = staffY + 30;
         stringLineIndex++;
-        console.log(stringLineIndex);
-        console.log("String "+element+ " y position =" +staffY);
     }
-
-    let spacing = 150;
-    let nextfret = 30
-    console.log(nextfret);
+    
     // FRETS
-    for (let step = 0; step < 18; step++) {
+    for (let k = 0; k < 18; k++) {
         d3.select("#fretboard")
             .append("line")
             .style("stroke", "black")
             .style("stroke-width", 1)
             .attr("id", array2[stringLineIndex])
-            .attr("x1", nextfret)
+            .attr("x1", fretPositionsArray[k])
             .attr("y1", 110)
-            .attr("x2", nextfret)
+            .attr("x2", fretPositionsArray[k])
             .attr("y2", 260);
-        spacing = spacing * (1 / 1.122);
-        //console.log(spacing);
-        nextfret = Math.round(nextfret + spacing);
-        console.log(nextfret);
+            console.log(fretPositionsArray[k])
     }
-    d3.select("#fretboard")
-        .append('circle')
-        .attr('cx', 148)
-        .attr('cy', 135)
-        .attr('r', 6)
-        .style('fill', 'black');
-    d3.select("#fretboard")
-        .append('circle')
-        .attr('cx', 148)
-        .attr('cy', 199)
-        .attr('r', 6)
-        .style('fill', 'black');
-    d3.select("#fretboard")
-        .append('circle')
-        .attr('cx', 148)
-        .attr('cy', 249)
-        .attr('r', 6)
-        .style('fill', 'black');
-    d3.select("#fretboard")
-        .append('circle')
-        .attr('cx', 148)
-        .attr('cy', 288)
-        .attr('r', 6)
-        .style('fill', 'black');
-    d3.select("#fretboard")
-        .append('circle')
-        .attr('cx', 133)
-        .attr('cy', 334)
-        .attr('r', 6)
-        .style('fill', 'black');
-    d3.select("#fretboard")
-        .append('circle')
-        .attr('cx', 163)
-        .attr('cy', 334)
-        .attr('r', 6)
-        .style('fill', 'black');
 
+
+
+    d3.select("#fretboard")
+        .append('circle')
+        .attr('cx', 337)
+        .attr('cy', 185)
+        .attr('r', 10)
+        .style('fill', 'black');
+    d3.select("#fretboard")
+        .append('circle')
+        .attr('cx', 526)
+        .attr('cy', 185)
+        .attr('r', 10)
+        .style('fill', 'black');
+    d3.select("#fretboard")
+        .append('circle')
+        .attr('cx', 677)
+        .attr('cy', 185)
+        .attr('r', 10)
+        .style('fill', 'black');
+    d3.select("#fretboard")
+        .append('circle')
+        .attr('cx', 796)
+        .attr('cy', 185)
+        .attr('r', 10)
+        .style('fill', 'black');
+    d3.select("#fretboard")
+        .append('circle')
+        .attr('cx', 931)
+        .attr('cy', 155)
+        .attr('r', 10)
+        .style('fill', 'black');
+    d3.select("#fretboard")
+        .append('circle')
+        .attr('cx', 931)
+        .attr('cy', 215)
+        .attr('r', 10)
+        .style('fill', 'black');
+    const yStart = [95, 125, 155, 185, 215, 245];
+    let j = 1
+    for (const string of yStart) {
+        let i = 0;
+        for (const fret of fretPositionsArray) {
+            d3.select("#fretboard")
+                .append('rect')
+                .on("click", function () {
+                    data.push(this.id);
+                    console.log(data);
+                })
+                .on("mouseover", function() {   
+                    d3.select(this).attr('fill', 'green')
+                })
+                .on('mouseout', function() {
+                    d3.select(this).attr('fill', 'orange')
+                })
+                .attr("id", "S" + j + "F" + (i+1))
+                .attr('x', fret)
+                .attr('y', string)
+                .attr('width', fretWidthArray[i])
+                .attr('height', 30)
+                //.attr('stroke', 'green')
+                .attr('stroke-linecap', 'butt')
+                .attr('stroke-width', '1')
+                .attr('fill', '#FFFAEF')
+                .attr('fill-opacity', .1)
+            i++
+        }
+        j++
+    }
+}
+function createPositionAndWidthOfFrets() {
+    const yStart = [95, 125, 155, 185, 215, 245];   
+    let ft = 60;
+    let spacing = 150;
+    fretPositionsArray.push(ft);
+    for (let i = 0; i < 18; i++) {
+        fretWidth();
+        fretPosition(ft, i)
+    }
+    function fretPosition(lastFretFinish, i) {
+        console.log("Last Fret Finish = "+lastFretFinish)
+        ft = Math.round((lastFretFinish + fretWidthArray[i]));
+        fretPositionsArray.push(ft);
+    }
+    function fretWidth() {
+        spacing = Math.round(spacing * (1 / 1.122));
+        fretWidthArray.push(spacing);
+    }
+    function consoleLogFretsAndPositions() {
+        console.log(fretPositionsArray)
+        console.log(fretWidthArray)
+    }
+    consoleLogFretsAndPositions();
 }

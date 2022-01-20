@@ -16,7 +16,6 @@ let stringLineIndex = 0;
 let selectedString = "";
 let initialPosition = [20, 20]
 let currentPosition = [];
-
 let data = [];
 data.push("1", "1", "G", "6")
 function insertNote(id) {
@@ -95,4 +94,5 @@ function makeMeasure() {
 
     fretboard();
 }
+
 

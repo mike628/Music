@@ -21,16 +21,6 @@ data.push("1", "1", "G", "6")
 function insertNote(id) {
     let elem = document.querySelector(id);
     let domRect = elem.getBoundingClientRect();
-    //console.log(domRect);
-    //d3.select("svg")
-    /* .append("text")
-    .attr("id", "text1")
-    .attr("x", 10)
-    .attr("y", staffY+3)
-    .text(element);
-
-    staffY = staffY + 15;
-    stringLineIndex++; */
 }
 function makeMeasure() {
 
@@ -50,7 +40,7 @@ function makeMeasure() {
             .attr("y2", staffY);
 
         // Transparent line for clickable area
-        d3.select("svg")
+       /*  d3.select("svg")
             .append("line")
             .on("click", function () {
                 selectedString = "#" + this.id + 1;
@@ -68,7 +58,7 @@ function makeMeasure() {
             .attr("y1", staffY)
             .attr("x2", "90%")
             .attr("y2", staffY);
-
+ */
         // String Names
         d3.select("svg")
             .append("text")
@@ -93,6 +83,37 @@ function makeMeasure() {
         .attr("y2", 50);
 
     fretboard();
+    createNoteRectOnStaff(musicData)
+}
+const musicData = Array.from(new Map(JSON.parse(localStorage.testMusic)));
+function createNoteRectOnStaff(musicData)
+{
+    numberOfNotes = musicData.length;
+    d3.select("svg")
+    .selectAll("rect")
+    .data(musicData,d=>d)
+    .enter()
+    .append("rect")
+    .attr('id',d=> d[0]) 
+    .on("click", function ( d,i) {
+        showalert(d,i)
+
+    })
+    //.attr('x',30)
+    .attr('x',d=> (musicData.indexOf(d) * 30) +30)
+    .attr('y', 10)
+    .attr('width', 20)
+    .attr('height', 90)
+    .attr('stroke', 'green')
+    .attr('stroke-linecap', 'butt')
+    .attr('stroke-width', '1')
+    .attr('fill', 'black')
+    .attr('fill-opacity', .1)
+    
+
 }
 
-
+function showalert(Dataelement,i)
+{
+    alert(Dataelement[0] + "is Index "+i);
+}

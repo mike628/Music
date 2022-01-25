@@ -3,7 +3,8 @@ let fretPositionsArray = [];
 let spacing = 150;
 const upperLeftCorner = 60;
 let fret = upperLeftCorner
-
+let isEdit = false;
+let isInsert = false;
 function fretboard() {
 
     createPositionAndWidthOfFrets();
@@ -80,37 +81,7 @@ function fretboard() {
     for (const string of yStart) {
         let i = 0;
         for (let fret of fretPositionsArray) {
-            d3.select("#fretboard")
-                .append('rect')
-                .on("click", function () {
-                    let strfrt = { str: j, frt: i}
-                    music.set(Math.random(), strfrt);
-
-                    for (let k of music.keys()) {
-                       // console.log(k)
-                    }
-                    for (let v of music.values()) {
-                        console.log(v)
-                    }
-                    localStorage.setItem("testMusic", JSON.stringify(Array.from(music.entries())));
-
-                })
-                .on("mouseover", function () {
-                    d3.select(this).attr('fill', 'green')
-                })
-                .on('mouseout', function () {
-                    d3.select(this).attr('fill', 'orange')
-                })
-                .attr("id", "S" + j + "F" + (i + 1))
-                .attr('x', fret)
-                .attr('y', string)
-                .attr('width', fretWidthArray[i])
-                .attr('height', 30)
-                //.attr('stroke', 'green')
-                .attr('stroke-linecap', 'butt')
-                .attr('stroke-width', '1')
-                .attr('fill', '#FFFAEF')
-                .attr('fill-opacity', .1)
+            createfretboard(fret, string, i, j)
             i++
         }
         j++
@@ -139,4 +110,57 @@ function createPositionAndWidthOfFrets() {
         // console.log(fretWidthArray)
     }
     consoleLogFretsAndPositions();
+}
+function createfretboard(fret, string, i, j) {
+    d3.select("#fretboard")
+        .append('rect')
+        .on("click", function () {
+            let strfrt = { str: j, frt: i }
+            music.set(Math.random(), strfrt);
+            localStorage.setItem("testMusic", JSON.stringify(Array.from(music.entries())));
+
+
+        })
+        .on("mouseover", function () {
+            d3.select(this).attr('fill', 'green')
+        })
+        .on('mouseout', function () {
+            d3.select(this).attr('fill', 'orange')
+        })
+        .attr("id", "S" + j + "F" + (i + 1))
+        .attr('x', fret)
+        .attr('y', string)
+        .attr('width', fretWidthArray[i])
+        .attr('height', 30)
+        //.attr('stroke', 'green')
+        .attr('stroke-linecap', 'butt')
+        .attr('stroke-width', '1')
+        .attr('fill', '#FFFAEF')
+        .attr('fill-opacity', .1)
+
+}
+function getstaffPositionToPutNote() {
+    if (isEdit) {
+        // If note is being Edited
+        getstaffPositionOfEdit()
+    }
+    else if (isInsert) {
+        //if note is being isnserted BETWEEN 2 notes
+        getPostionBeforeInsert()
+    }
+    else {
+        // if note goes on the end
+        putNoteAtEnd()
+    }
+}
+
+function getstaffPositionOfEdit() {
+
+}
+function getPostionBeforeInsert() {
+
+}
+
+function putNoteAtEnd() {
+
 }

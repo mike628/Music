@@ -15,11 +15,28 @@ fetch("music.json")
     ); */
     
     const music = new Map();
-    music.set("1-1",{str:"4",fret:"6"});
-    music.set("1-2",{str:"5",fret:"2"});
-    music.set("1-3",{str:"4",fret:"3"});
-    music.set("1-4",{str:"5",fret:"12"});
+   // music.set({str:"4",fret:"6"});
+    //music.set({str:"5",fret:"2"});
+    //music.set({str:"4",fret:"3"});
+    //music.set({str:"5",fret:"12"});
+    music.set('2345',{str:"4",fret:"6"});
+    music.set('5478',{str:"5",fret:"2"});
+    music.set('431',{str:"4",fret:"3"});
+    music.set('3455',{str:"5",fret:"12"});
     localStorage.setItem("testMusic",JSON.stringify(Array.from(music.entries())));
+    /* console.log(music.get("1-2"));
+    console.log(music.has("1-2"));
+    console.log(music.has("1-8"));
+    console.log(music.size); */
+    for( let position of music.keys())
+    {
+     // console.log(position)
+    }
+    for( let position of music.values())
+    {
+     // console.log(position)
+    }
+    
 
     /*keys will be Measure-Position (Ex 3-12)
      values are {str:2,fret:8}
